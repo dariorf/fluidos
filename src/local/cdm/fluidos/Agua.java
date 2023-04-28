@@ -19,7 +19,7 @@ public class Agua extends Liquido {
     }
 
     public Agua(Double litros) {
-        super(litros, "Incoloro");
+        super(litros, "incoloro");
         this.pureza = 1.0;
     }
 

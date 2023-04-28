@@ -1,6 +1,7 @@
 package local.cdm.energias;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Persona implements Energetico {
@@ -25,18 +26,20 @@ public class Persona implements Energetico {
 
     public int hacerTareas() {
         int c = 0;
-
-        for (Accion t : this.tareas) {
-            if (this.energiaActual-t.getEnergia() > 0) {
+        
+        Iterator it = this.tareas.iterator();
+        
+        while (it.hasNext()) {
+            Accion t = (Accion) it.next();
+            if (this.energiaActual-t.getEnergia() >= 0) {
                 t.hacer();
                 this.energiaActual-=t.getEnergia();
-                this.tareas.remove(t);
+                it.remove();
                 c++;
             } else {
                 break;
             }
         }
-
         return c;
     }
 

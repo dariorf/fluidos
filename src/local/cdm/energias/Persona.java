@@ -53,8 +53,13 @@ public class Persona implements Energetico {
     }
     
     public Double beber(Bebible b) {
-        if (this.estadoVejiga+b.getLitros() <= this.capacidadVejiga) {
-            this.estadoVejiga += b.getLitros();
+        double aux = this.capacidadVejiga - this.estadoVejiga;
+        this.estadoVejiga += b.getLitros();
+        
+        if (this.estadoVejiga > this.capacidadVejiga) {            
+            this.estadoVejiga = this.capacidadVejiga;
+            this.energiaActual += aux * b.getEnergia() / b.getLitros();
+        } else {
             this.energiaActual += b.getEnergia();
         }
         

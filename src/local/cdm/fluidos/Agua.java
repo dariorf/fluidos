@@ -15,7 +15,7 @@ public class Agua extends Liquido implements Bebible {
     }
 
     public void setPureza(Double pureza) {
-        if (pureza != null && pureza >= 0.0 && pureza < 1.0) {
+        if (pureza != null && pureza >= 0.0 && pureza <= 1.0) {
             this.pureza = pureza;
         }
     }

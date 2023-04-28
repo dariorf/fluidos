@@ -11,15 +11,17 @@ public class Principal {
         Persona p = new Persona("Pepe", 100.0);
         ExamenPractico ep = new ExamenPractico("Programacion", 120);
         PartidoFutbol partido = new PartidoFutbol(1);
+        PartidoFutbol p2 = new PartidoFutbol(7);
         String input;
 
         p.addTarea(ep);
         p.addTarea(partido);
+        p.addTarea(p2);
 
         while (!p.getTareas().isEmpty()) {
             p.hacerTareas();
 
-            while (p.getEnergia() == 0) {
+            while (p.getEnergia() <= 0) {
                 System.out.println("Elija una bebida: ");
                 System.out.println("1: Agua");
                 System.out.println("2: Cola");
@@ -50,20 +52,23 @@ public class Principal {
                         System.out.println("No puedes beber lejía");
                         break;
                 }
-                
+
                 if (p.getEstadoVejiga().equals(p.getCapacidadVejiga())) {
                     System.out.println("Vejiga llena! Quieres evacuar? (S/N)");
                     input = sc.nextLine();
-                    
+
                     if (input.toUpperCase().equals("S")) {
                         p.vaciarVejiga();
                     } else {
                         break;
                     }
                 }
-
             }
         }
+        
+        System.out.println("Tareas terminadas.");
+        System.out.println("Estado energía: " + p.getEnergiaActual());
+        System.out.println("Estado vejiga: " + p.getEstadoVejiga());
 
     }
 }

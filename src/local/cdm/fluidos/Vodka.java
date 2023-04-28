@@ -16,14 +16,14 @@ public class Vodka extends Liquido implements Graduable, Bebible {
     }
 
     public void setGrados(Double grados) {
-        if (grados != null && grados >= 0.0 && grados < 1.0) {
+        if (grados != null && grados >= 0.0 && grados <= 1.0) {
             this.grados = grados;
         }
     }
 
     public Vodka(Double grados, Double litros) {
         super(litros, "Incoloro");
-        if (grados != null && grados >= 0.0 && grados < 1.0) {
+        if (grados != null && grados >= 0.0 && grados <= 1.0) {
             this.grados = grados;
         }
     }
@@ -39,7 +39,8 @@ public class Vodka extends Liquido implements Graduable, Bebible {
 
     @Override
     public Integer getEnergia() {
-        return (int) (-150*(this.grados*this.litros));
+        double energia = (-150 * this.grados) / this.litros;
+        return (int) Math.round(energia);
     }
 
 }

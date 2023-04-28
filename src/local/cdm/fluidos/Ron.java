@@ -16,14 +16,14 @@ public class Ron extends Liquido implements Graduable, Bebible {
     }
 
     public void setGrados(Double grados) {
-        if (grados != null && grados >= 0.0 && grados < 1.0) {
+        if (grados != null && grados >= 0.0 && grados <= 1.0) {
             this.grados = grados;
         }
     }
 
     public Ron(Double grados, Double litros) {
         super(litros, "Ámbar");
-        if (grados != null && grados >= 0.0 && grados < 1.0) {
+        if (grados != null && grados >= 0.0 && grados <= 1.0) {
             this.grados = grados;
         }
     }
@@ -39,7 +39,8 @@ public class Ron extends Liquido implements Graduable, Bebible {
 
     @Override
     public Integer getEnergia() {
-        return Math.round(-100*(this.grados.floatValue()*this.litros.floatValue()));
+        double energia = (-100 * this.grados) / this.litros;
+        return (int) Math.round(energia);
     }
 
 }

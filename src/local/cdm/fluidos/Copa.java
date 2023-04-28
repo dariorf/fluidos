@@ -48,7 +48,8 @@ public class Copa extends Liquido implements Graduable, Bebible{
     public Integer getEnergia() {
         Bebible m = (Bebible) this.mezcla;
         Bebible a = (Bebible) this.alcohol;
-        return Math.round((m.getEnergia()/this.getLitros().floatValue())+(a.getEnergia()/this.getLitros().floatValue()));
+        double energia = (m.getEnergia() / this.getLitros()) + (a.getEnergia() / this.getLitros());
+        return (int) Math.round(energia);
     }
 
 }

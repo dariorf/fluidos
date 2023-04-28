@@ -4,7 +4,9 @@
  */
 package local.cdm.fluidos;
 
-public class Agua extends Liquido {
+import local.cdm.energias.Bebible;
+
+public class Agua extends Liquido implements Bebible {
 
     private Double pureza;
 
@@ -35,4 +37,9 @@ public class Agua extends Liquido {
         return salida;
     }
 
+    @Override
+    public Integer getEnergia() {
+        return Math.round(30*this.litros.floatValue());
+    }
+    
 }

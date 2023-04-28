@@ -4,7 +4,9 @@
  */
 package local.cdm.fluidos;
 
-public class Cola extends Liquido {
+import local.cdm.energias.Bebible;
+
+public class Cola extends Liquido implements Bebible {
         
     private boolean cafeina;
 
@@ -25,6 +27,11 @@ public class Cola extends Liquido {
     public Liquido mezclar(Liquido l) throws NoSePuedeMezclarException {
         // TODO
         throw new NoSePuedeMezclarException("No es posible mezclar con Cola");
+    }
+
+    @Override
+    public Integer getEnergia() {
+        return Math.round(50*this.litros.floatValue());
     }
     
 }

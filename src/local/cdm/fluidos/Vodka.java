@@ -4,7 +4,9 @@
  */
 package local.cdm.fluidos;
 
-public class Vodka extends Liquido implements Graduable {
+import local.cdm.energias.Bebible;
+
+public class Vodka extends Liquido implements Graduable, Bebible {
     
     private Double grados;
 
@@ -29,10 +31,15 @@ public class Vodka extends Liquido implements Graduable {
     @Override
     public Liquido mezclar(Liquido l) throws NoSePuedeMezclarException {
         if (l.getClass().equals(Cola.class) || l.getClass().equals(Agua.class)) {
-            return new Copa(this, l.mezclar(this));
+            return new Copa(this, l);
         } else {
             throw new NoSePuedeMezclarException("Solo de puede mezclar Vodka con Agua o Cola");
         }        
+    }
+
+    @Override
+    public Integer getEnergia() {
+        return (int) (-150*(this.grados*this.litros));
     }
 
 }

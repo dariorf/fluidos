@@ -4,7 +4,9 @@
  */
 package local.cdm.fluidos;
 
-public class Copa extends Liquido implements Graduable {
+import local.cdm.energias.Bebible;
+
+public class Copa extends Liquido implements Graduable, Bebible{
 
     private Graduable alcohol;
     private Liquido mezcla;
@@ -25,8 +27,8 @@ public class Copa extends Liquido implements Graduable {
         this.mezcla = mezcla;
     }
 
-    public Copa(Graduable alcohol, Liquido mezcla) {
-        super(mezcla.getLitros(), mezcla.getColor());
+    public Copa(Graduable alcohol, Liquido mezcla) throws NoSePuedeMezclarException {
+        super(mezcla.mezclar((Liquido) alcohol).getLitros(), mezcla.mezclar((Liquido) alcohol).getColor());
         this.alcohol = alcohol;
         this.mezcla = mezcla;
     }
@@ -40,6 +42,13 @@ public class Copa extends Liquido implements Graduable {
     public Double getGrados() {
         Liquido a = (Liquido) alcohol;
         return (alcohol.getGrados() * a.getLitros()) / this.litros;
+    }
+
+    @Override
+    public Integer getEnergia() {
+        Bebible m = (Bebible) this.mezcla;
+        Bebible a = (Bebible) this.alcohol;
+        return Math.round((m.getEnergia()/this.getLitros().floatValue())+(a.getEnergia()/this.getLitros().floatValue()));
     }
 
 }
